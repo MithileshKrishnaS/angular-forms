@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="total">
+    <h1>Form Validation</h1>
+    <form [formGroup]="form" (ngSubmit)="validate()">
+        <div id="one">
+            <span *ngIf="nameerror">name is required</span><br>
+            <label for="fname">First name :</label>
+        </div>
+
+        <div>
+            <input formControlName="name"><br>
+        </div>
+
+        <div id="one">
+            <span *ngIf="gender">gender is required</span><br>
+            <label for="gender">Gender :</label>
+        </div>
+
+        <div id="gen">
+            <input type="checkbox" id="male" name="male" formControlName="male">
+            <label for="male">Male</label>
+            <input type="checkbox" id="female" name="female" formControlName="female">
+            <label for="female">Female</label><br><br>
+        </div>
+
+        <div id="one">
+            <span *ngIf="co">country is required</span><br>
+            <label for="country">Country :</label>
+        </div>
+
+        <div>
+        <input list="country1" formControlName="country" name="something" [(ngModel)]="selectedCountry"  (change)="selectcity()">
+            <datalist id="country1" >
+                <option *ngFor="let c of countries" value={{c.name}}></option>
+            </datalist><br><br>
+        </div>
+
+        <div id="one">
+            <span *ngIf="ct">city is required</span><br>
+            <label for="city">City :</label>
+        </div>
+
+        <div>
+            <input list="city" formControlName="city" [(ngModel)]="selectedCity" name="something">
+                <datalist id="city">
+                    <option *ngFor="let c of cities| slice:1;" value={{c.name}} ></option>
+                </datalist><br><br>
+        </div>
+
+        <div id="one">
+            <span *ngIf="age">age is required</span><br>
+            <label for="age">age : </label>
+        </div> 
+
+        <div>
+            <input type="text" id="age" name="age" formControlName="age"><br><br>
+        </div>
+       <div></div>
+        <div id="btn">
+            <input type="submit" id="submit" value="Submit">
+        </div>
+    </form>
+    </div>
+
+</body>
+</html>
